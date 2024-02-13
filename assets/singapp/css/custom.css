@@ -1,0 +1,12 @@
+:root {
+  --newred: #ff3737;
+  --newreddark: #bd2727;
+}
+.btn-red {
+  background-color: var(--newred);
+  color: white;
+}
+.btn-red:hover {
+  background-color: var(--newreddark);
+  color: white;
+}

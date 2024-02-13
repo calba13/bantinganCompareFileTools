@@ -1,0 +1,82 @@
+{extends file="../Shared/info.singapp.html"}
+{block name=bodycontent}
+<style>
+  .xy-center {    
+    margin: auto;    
+  }
+</style>
+<div class="row justify-content-center">
+  <div class="col-xl-8 col-md-10">
+    <div class="widget card-group">
+      <div class="card">
+        <form class="card-body" action="{$baseUrl}/auth/login" method="POST">
+          <h1>Login</h1>
+          <p class="text-muted">Sign In to your account </p>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" ><i class="fa fa-user"></i></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Username" name="user_name" >
+          </div>
+          <div class="input-group mb-4">
+            <div class="input-group-prepend">
+              <span class="input-group-text" ><i class="fa fa-lock"></i></span>
+            </div>
+            <input type="password" class="form-control" placeholder="Password" name="user_password" >
+          </div>
+          <div class="row">
+            <div class="col-lg-6 col-sm-12">
+              <button type="submit" class="btn btn-success px-4" name="login" value="Login">Login</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+            {if isset($returnmessage)}
+              <div class="help-block"><strong class="text-danger">{$returnmessage}</strong></div>
+              <a type="button" class="btn btn-link px-0" href="{$baseUrl}/resetpasswordrequest">Forgot password?</a> <span class="btn">or</span><br>
+            {/if}
+            <hr/>
+              <p class="text-muted">Not register yet? <a href="{$baseUrl}/registration">Sign Up</a></p>
+              <pre>
+The login system will read to users table, you can click Sign Up link if you don't have user registered.
+
+If the REDBEAN_FREEZE option is false in config then the users table will be automatically created if not exists.
+            </div>  
+            
+            <div class="col-12 col-lg-8">
+              <div class="d-flex flex-column">
+                <div class="btn-group mt-3">
+                  <div class="btn btn-red"><i class="fa fa-google"></i></div>
+                  <a type="button" class="btn btn-red" href="#">
+                    Login with Google
+                  </a>
+                </div>
+                <div class="btn-group mt-2">
+                  <div class="btn btn-primary"><i class="fa fa-facebook"></i></div>
+                  <a type="button" class="btn btn-primary" href="#">      
+                    Login with Facebook            
+                  </a>
+                </div>
+                <div class="btn-group mt-2">
+                  <div class="btn btn-info"><i class="fa fa-twitter"></i></div>
+                  <a type="button" class="btn btn-info" href="#">    
+                    Login with Twitter              
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+        <div class="row" style="margin-top: auto; padding: 1.25rem;">
+          <div class="col-12"><a href="{$baseUrl}/home/tnc">Terms & Conditions</a></div>
+        </div>
+      </div>
+      <div class="card text-white bg-success" style="width:44%">
+        <div class="xy-center d-none d-md-block">
+          <h1>Logo</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{/block}

@@ -1,0 +1,10 @@
+{extends file="../Shared/singapp.master.html"}
+{block name=bodycontent}
+This page is secured, only logged in user can access this page.
+<hr>
+Current User Information :<br>
+{json_encode($login)}
+{/block}  
+{block name=scriptcontent}
+
+{/block}  

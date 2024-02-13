@@ -1,0 +1,66 @@
+# custom route to sampleapi controller
+# direct path to api, ex : https://domain.com/api
+sampleapi: 
+  path: /api
+  controller: sampleapi 
+  wildcard: true
+
+# direct path to info page, ex : https://domain.com/info
+info: 
+  path: /info
+  controller: home
+  action: info    
+
+# direct path to info page, ex : https://domain.com/info/
+info2: 
+  path: /info/
+  controller: home
+  action: info  
+
+# direct path to login page, ex : https://domain.com/login
+login: 
+  path: /login
+  controller: auth
+  action: login    
+
+# direct path to logout page, ex : https://domain.com/logout
+logout: 
+  path: /logout
+  controller: home
+  action: index
+  parameter: [logout]
+
+# direct path to logout page, ex : https://domain.com/registration  
+registration: 
+  path: /registration
+  controller: registration
+  action: userregistration
+
+# direct path to logout page, ex : https://domain.com/resetpassword  
+resetpassword: 
+  path: /resetpassword
+  controller: registration
+  action: resetpassword
+  wildcard: true
+
+# direct path to logout page, ex : https://domain.com/resetpasswordrequest
+resetpasswordrequest: 
+  path: /resetpasswordrequest
+  controller: registration
+  action: resetpasswordrequest
+
+# direct path to logout page, ex : https://domain.com/useractivation  
+useractivation: 
+  path: /useractivation
+  controller: registration
+  action: useractivation
+  wildcard: true
+
+# direct path to logout page, ex : https://domain.com/resendactivationcode  
+resendactivationcode: 
+  path: /resendactivationcode
+  controller: registration
+  action: resendactivationcode
+  wildcard: true
+
+  

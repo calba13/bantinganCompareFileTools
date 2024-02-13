@@ -1,0 +1,33 @@
+version: "3"
+services:
+# sample of doker-compose with mariadb container
+  bantinganweb:
+    image: susilon/bantingan3-app # change with your image name
+    ports:
+      - "80:80"
+    # sample use volume binding
+    #volumes:
+    #  - /home/user/release/Bantingan3/:/var/www/html
+    
+    # sample of application settings in environment variables
+    environment:
+      BANTINGAN3_APPLICATION_SETTINGS: '{"SiteTitle":"Bantingan Docker","DefaultController":"Home","BaseUrl":""}'
+      BANTINGAN3_DATABASE_SETTINGS: '{"default":{"server":"bantingandb","user":"bantingandb","password":"bantingandbaccess","database":"maindb"},"usermanagement":{"type":"mysql","server":"bantingandb","user":"bantingandb","password":"bantingandbaccess","database":"memberdb"}}'
+      # check sample at homecontroller to read this value from application
+      BANTINGAN3_SAMPLECUSTOM_SETTINGS: '{"samplekey1":"samplevalue1", "samplekey2":"samplevalue2", "samplekey3":"samplevalue3"}'
+
+  bantingandb:
+    image: mariadb
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: 'root' # change with better root password 
+      MYSQL_USER: 'bantingandb' # set user name to be used in application
+      MYSQL_PASSWORD: 'bantingandbaccess' # set user password here
+      MYSQL_DATABASE: 'memberdb' # initial db to be created
+
+  adminerweb:
+    image: adminer
+    ports:
+      - "8080:8080"
+    

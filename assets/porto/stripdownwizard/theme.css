@@ -1,0 +1,275 @@
+html .wizard-steps {
+	background-color: transparent !important;
+}
+html .wizard-progress,
+html.dark .wizard-progress {
+	margin: 0 15px;
+}
+
+html .wizard-progress .steps-progress,
+html.dark .wizard-progress .steps-progress {
+	height: 2px;
+	margin: 0 38px;
+	position: relative;
+	top: 15px;
+	background: #cccccc;
+}
+
+html .wizard-progress .steps-progress .progress-indicator,
+html.dark .wizard-progress .steps-progress .progress-indicator {
+	height: 100%;
+	width: 0;
+	background: #cccccc;
+	-webkit-transition: width 0.2s ease-in;
+	-moz-transition: width 0.2s ease-in;
+	transition: width 0.2s ease-in;
+}
+
+html .wizard-progress .wizard-steps,
+html.dark .wizard-progress .wizard-steps {
+	list-style: none;
+	margin: 0;
+	padding: 15px 0 0;
+	display: inline-block;
+	width: 100%;
+	font-size: 0;
+	text-align: justify;
+	-ms-text-justify: distribute-all-lines;
+	/* IE8+ */;
+}
+
+html .wizard-progress .wizard-steps:after,
+html.dark .wizard-progress .wizard-steps:after {
+	/*
+	* We don't need IE6 and IE7 inline-block hack support here
+	* since they don't support :after anyways (the text-justify
+	* properties for them are above)... IE8 and above have native
+	* inline-block support so for IE8+, both the text-justify and
+	* :after will take effect but it doesn't have any negative
+	* effects since this element is invisible
+	*/
+	display: inline-block;
+	width: 100%;
+	content: '.';
+	font-size: 0;
+	height: 0;
+	line-height: 0;
+	visibility: hidden;
+}
+html .wizard-progress .wizard-steps li,
+html.dark .wizard-progress .wizard-steps li {
+	display: inline-block;
+	vertical-align: top;
+	min-width: 50px;
+	max-width: 100px;
+}
+html .wizard-progress .wizard-steps li a,
+html.dark .wizard-progress .wizard-steps li a {
+	position: relative;
+	display: block;
+	padding: 25px 8px 0;
+	font-size: 11px;
+	color: #33333f;
+	font-weight: bold;
+	line-height: 1;
+	text-align: center;
+	text-decoration: none;
+	word-break: break-all;
+}
+html .wizard-progress .wizard-steps li a span,
+html.dark .wizard-progress .wizard-steps li a span {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	display: block;
+	background: #cccccc;
+	color: white;
+	line-height: 26px;
+	text-align: center;
+	margin-top: -15px;
+	margin-left: -15px;
+	width: 30px;
+	height: 30px;
+	border-radius: 35px;
+	font-size: 13px;
+	text-indent: -1px;
+	border: 2px solid #cccccc;
+	-webkit-transition: all 0.2s ease-in;
+	-moz-transition: all 0.2s ease-in;
+	transition: all 0.2s ease-in;
+}
+html .wizard-progress .wizard-steps li.completed a span,
+html.dark .wizard-progress .wizard-steps li.completed a span {
+	background: #cccccc;
+	color: white;
+}
+html .wizard-progress .wizard-steps li.active a span,
+html.dark .wizard-progress .wizard-steps li.active a span {
+	background: white;
+	color: #cccccc;
+	border-color: #cccccc;
+}
+html .wizard-progress .wizard-steps li.completed.active a span,
+html.dark .wizard-progress .wizard-steps li.completed.active a span {
+	color: #FFF;
+}
+html .wizard-progress.wizard-progress-lg,
+html.dark .wizard-progress.wizard-progress-lg {
+	margin: 0 auto 30px;
+	width: 80%;
+}
+html .wizard-progress.wizard-progress-lg .steps-progress,
+html.dark .wizard-progress.wizard-progress-lg .steps-progress {
+	margin: 0 52px;
+	height: 4px;
+	top: 34px;
+}
+html .wizard-progress.wizard-progress-lg .wizard-steps,
+html.dark .wizard-progress.wizard-progress-lg .wizard-steps {
+	padding-top: 30px;
+}
+html .wizard-progress.wizard-progress-lg ul li,
+html.dark .wizard-progress.wizard-progress-lg ul li {
+	max-width: 135px;
+}
+html .wizard-progress.wizard-progress-lg ul li a,
+html.dark .wizard-progress.wizard-progress-lg ul li a {
+	padding-top: 40px;
+	font-size: 14px;
+}
+html .wizard-progress.wizard-progress-lg ul li a span,
+html.dark .wizard-progress.wizard-progress-lg ul li a span {
+	width: 60px;
+	height: 60px;
+	margin-top: -30px;
+	margin-left: -30px;
+	border-radius: 60px;
+	line-height: 52px;
+	font-size: 22px;
+	border-width: 4px;
+}
+
+html.dark .wizard-progress .wizard-steps li a {
+	color: #808697;
+}
+html.dark .wizard-progress.wizard-progress ul li a span {
+	background: #242830;
+	border-color: #242830;
+}
+html.dark .wizard-progress .wizard-steps li.active a span {
+	background: #242830;
+}
+html.dark .wizard-progress .steps-progress {
+	background: #242830;
+}
+
+@media only screen and (max-width: 991px) {
+	html .wizard-progress, html .wizard-progress.wizard-progress-lg, html.dark .wizard-progress, html.dark .wizard-progress.wizard-progress-lg {
+		width: auto;
+		margin-bottom: 0;
+		margin-left: -15px;
+		margin-right: -15px;
+	}
+	html .wizard-progress .steps-progress, html.dark .wizard-progress .steps-progress {
+		display: none;
+	}
+	html .wizard-progress .wizard-steps, html.dark .wizard-progress .wizard-steps {
+		display: block;
+		font-size: 0;
+		overflow: hidden;
+		white-space: nowrap;
+		text-align: left;
+		width: 100%;
+	}
+	html .wizard-progress .wizard-steps li, html.dark .wizard-progress .wizard-steps li {
+		-webkit-transition: margin 0.5s linear;
+		-moz-transition: margin 0.5s linear;
+		transition: margin 0.5s linear;
+		display: inline-block;
+		float: none;
+		position: relative;
+		width: 100%;
+		min-width: 0;
+		max-width: none;
+	}
+	html .wizard-progress .wizard-steps li a, html.dark .wizard-progress .wizard-steps li a {
+		position: relative;
+		z-index: 2;
+	}
+	html .wizard-progress .wizard-steps li:before, html .wizard-progress .wizard-steps li:after, html.dark .wizard-progress .wizard-steps li:before, html.dark .wizard-progress .wizard-steps li:after {
+		content: '';
+		display: block;
+		height: 2px;
+		position: absolute;
+		top: 0;
+		width: 50%;
+	}
+	html .wizard-progress .wizard-steps li:before, html.dark .wizard-progress .wizard-steps li:before {
+		background: #cccccc;
+		left: 0;
+	}
+	html .wizard-progress .wizard-steps li:after, html.dark .wizard-progress .wizard-steps li:after {
+		background: #cccccc;
+		right: 0;
+	}
+	html .wizard-progress .wizard-steps li.active, html.dark .wizard-progress .wizard-steps li.active {
+		margin-left: 0;
+	}
+	html .wizard-progress .wizard-steps li.completed, html.dark .wizard-progress .wizard-steps li.completed {
+		margin-left: -100%;
+	}
+	html .wizard-progress .wizard-steps li.completed:after, html.dark .wizard-progress .wizard-steps li.completed:after {
+		background: #cccccc;
+	}
+	html .wizard-progress .wizard-steps li.completed.active, html.dark .wizard-progress .wizard-steps li.completed.active {
+		margin-left: 0;
+	}
+	html .wizard-progress .wizard-steps li:first-child:before, html.dark .wizard-progress .wizard-steps li:first-child:before {
+		display: none;
+	}
+	html .wizard-progress .wizard-steps li:last-child:after, html.dark .wizard-progress .wizard-steps li:last-child:after {
+		display: none;
+	}
+	html .wizard-progress.wizard-progress-lg .wizard-steps li, html.dark .wizard-progress.wizard-progress-lg .wizard-steps li {
+		min-width: 0;
+		max-width: none;
+	}
+	html .wizard-progress.wizard-progress-lg .wizard-steps li:before, html .wizard-progress.wizard-progress-lg .wizard-steps li:after, html.dark .wizard-progress.wizard-progress-lg .wizard-steps li:before, html.dark .wizard-progress.wizard-progress-lg .wizard-steps li:after {
+		height: 4px;
+	}
+}
+.form-wizard {
+	margin-bottom: 20px;
+}
+.form-wizard .tabs {
+	margin-bottom: 0;
+}
+.form-wizard .tab-content {
+	background: none;
+	border: 0 none;
+	box-shadow: none;
+}
+.form-wizard ul.pager .next a,
+.form-wizard ul.pager .previous a,
+.form-wizard ul.pager .first a,
+.form-wizard ul.pager .last a,
+.form-wizard ul.pager .finish a {
+	cursor: pointer;
+}
+.form-wizard ul.pager .disabled a {
+	cursor: not-allowed;
+}
+
+html.dark .form-wizard .pager li > a,
+html.dark .form-wizard .pager li > a:hover,
+html.dark .form-wizard .pager li > a:focus,
+html.dark .form-wizard .pager li > span {
+	background: #2e353e;
+	border-color: #282d36;
+	color: #EEE;
+}
+html.dark .form-wizard .pager .disabled > a, html.dark .form-wizard .pager .disabled > a:hover, html.dark .form-wizard .pager .disabled > a:focus, html.dark .form-wizard .pager .disabled > span {
+	background: #282d36;
+	border-color: #282d36;
+	color: #EEE;
+}

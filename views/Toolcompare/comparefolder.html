@@ -1,0 +1,82 @@
+{extends file="../Shared/tools_template.html"}
+{block name=bodycontent}
+    <div class="container-float p-5">
+            
+        <div class="d-flex justify-content-center">
+            <div class="p-2 w-50">
+                <div class="card">
+                    <div class="card-header text-center"> 
+                        <img src="{$baseUrl}/assets/images/qclogo2.png" class="rounded-circle" alt="" width="60" height="60">  
+                        <p>
+                            <h3> <strong>Compare Value Machine</strong> </h3>
+                            OM\ {$get_current_user}
+                        </p>
+                    
+                        
+                    </div>
+                    
+
+                    <form method="POST" enctype="multipart/form-data" action="{$baseUrl}/tools/rsltcomparexlsx">
+                        <div class="card-body"> 
+
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                                <label class="form-check-label" for="flexSwitchCheckChecked">Checked switch checkbox input</label>
+                            </div>
+
+                    
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="folderSatu" placeholder="Enter Value" name="folderSatu" required>
+                                <label for="folderSatu">Path Folder#1 </label>
+                            </div>
+    
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="folderDua" placeholder="Enter Value" name="folderDua" required>
+                                <label for="folderDua">Path Folder#2 </label>
+                            </div>
+
+                        </div>
+                        <div class="card-footer">
+                            <div class="d-flex flex-row-reverse ms-1">
+                                <button type="submit" class="btn btn-primary font-monospace">Compare Files Ftp</button>
+                                <!-- <button type="reset" class="btn btn-primary">Reset</button> -->
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{/block}
+
+
+{block name=scriptcontent}
+    <script>
+
+        // Ambil elemen input checkbox
+        var checkbox = document.getElementById('flexSwitchCheckChecked');
+        
+        // Tambahkan event listener untuk menangani perubahan status checkbox
+        checkbox.addEventListener('change', function() {
+        // Ambil elemen label
+        var label = document.querySelector('.form-check-label');
+        
+        // Periksa status checkbox
+        if (this.checked) {
+            // Jika checkbox dicentang, ubah teks label
+            label.textContent = 'Checked switch checkbox input';
+        } else {
+            // Jika checkbox tidak dicentang, ubah teks label
+            label.textContent = 'Unchecked switch checkbox input';
+        }
+        });
+    </script>
+
+
+{/block}
+
+
+
+
+
+

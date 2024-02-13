@@ -1,0 +1,81 @@
+<html>
+    <head>
+        <style>
+            /* CSS untuk menetapkan border pada tabel */
+            table {
+              border-collapse: collapse;
+            }
+            table, th, td {
+              border: 0.8px solid rgb(189, 189, 189);
+              font-size: 8px;
+              padding: 0.5em;
+            }
+            td {
+                font-size: 9px;
+            }
+
+            th {
+                background-color: rgb(92, 95, 95);
+                font-size: 8px;
+                color: beige;
+            }
+
+            .table-danger{
+                background-color: rgb(240, 177, 177);
+            }
+          </style>
+    </head>
+    <body>
+        <table width="99%">
+            <tr>
+                <!-- <td colspan="2" style="font-size:12px;font-weight: bold; max-width: 5%;"></td> -->
+                <td colspan="4" style="font-size:12px;font-weight: bold; max-width: 280px;" align="center" vertical-align="middle" >Path #1</td>
+                <td colspan="4" style="font-size:12px;font-weight: bold; max-width: 280px;" align="center" vertical-align="middle" >Path #2</td>
+            </tr>
+            <tr style="background-color: beige;">
+                <!-- <td colspan="2" style="font-size:12px;font-weight: bold; max-width: 5%;"></td> -->
+                <td colspan="4" style="max-width: 280px;" vertical-align="middle">{$pathSatu}</td>
+                <td colspan="4" style="max-width: 280px" vertical-align="middle">{$pathDua}</td>
+            </tr>
+            <tr style="background-color: beige;">
+                <!-- <td colspan="2"></td> -->
+                <td colspan="4" style="max-width: 280px;">Folder : {$totalDataF1.totalfolder}</td>
+                <td colspan="4" style="max-width: 280px;">Folder : {$totalDataF2.totalfolder}</td>
+            </tr>
+            <tr style="background-color: beige;">
+                <!-- <td colspan="2"></td> -->
+                <td colspan="4" style="max-width: 280px;">Files : {$totalDataF1.totalfile}</td>
+                <td colspan="4" style="max-width: 280px;">Files : {$totalDataF2.totalfile}</td>
+            </tr>
+
+            <tr>
+                <!-- <th style="text-align: center;">No</th>
+                <th style="text-align: center;">flag</th> -->
+                <th style="width:140px">Filename #1</th>
+                <th style="width:10px">Type#1</th>
+                <th style="width:30px">Size#1</th>
+                <th style="width:100px">Date Modify#1</th>
+                <th style="width:140px">Filename #2</th>
+                <th style="width:10px">Type#2</th>
+                <th style="width:30px">Size#2</th>
+                <th style="width:100px">Date Modify#2</th>
+            </tr>
+
+            {foreach from=$rltData item=data name=foo}
+                <tr class=" {$data.trStyle}">
+                    <!-- <th scope="row"></th>  -->
+                    <!-- <td style="text-align: right;"><strong>{$kolom}</strong></td> -->
+                    <!-- <td style="text-align: right;"> -->
+                    <!-- {$smarty.foreach.foo.iteration}
+                    </td>  -->
+                        
+                    {foreach from=$data.item item=subdata}
+                        <td>{$subdata}</td>
+                    {/foreach}
+                    
+                </tr>
+            {/foreach}
+
+        </table>
+    </body>
+</html>

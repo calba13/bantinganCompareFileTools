@@ -1,0 +1,39 @@
+{extends file="../Shared/singapp.master.html"}
+{block name=bodycontent}
+{$data}
+<hr>
+<p>
+Bantingan is PHP MVC Framework<br>
+This page PHP code is in controllers/HomeController.php file, <br>
+and the page HTML is views/Home directory, with main HTML layout is in Shared directory.<br>
+</p>
+<p>
+Because this Sing App template is using pjax for page loading, css and javascript must be in separated files,<br>
+please check out Tables and Notifications sample page.<br>
+To disable pjax at side menu add 'no-pjax' class, for example at Secured Page menu<br>
+For more information about jquery-pjax, <a href="https://www.npmjs.com/package/jquery-pjax" target="jquery-pjax">Click Here</a>.
+</p>
+<p>
+    Your PHP version : <b>{phpversion()}</b>
+</p>
+{if isset($extensioncheck)}
+<p>
+<b>Required PHP Extensions :</b><br>
+{foreach from=$extensioncheck key=$extname item=$extstatus}
+<b>{$extname}</b> : {if $extstatus}Enabled <i class="fa fa-check text-success"></i>{else} Not Available <i class="fa fa-times text-danger"></i>{/if}<br>
+{/foreach}<br>
+<small class="text-muted"><i>please check your PHP extensions settings in php.ini</i></small>
+</p>
+{/if}
+{if isset($sampleEnvConfig)}
+<p>
+Loaded custom settings from environment variables :<br>
+{$sampleEnvConfig->samplekey1}<br>
+{$sampleEnvConfig->samplekey2}<br>
+{$sampleEnvConfig->samplekey3}
+</p>
+{/if}
+{/block}  
+{block name=scriptcontent}
+
+{/block}  

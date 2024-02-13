@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="shortcut icon" href="{$baseUrl}/assets/images/qclogo.png"  type="image/x-icon"/>
+<!-- Bootstrap CSS -->
+<link href="{$baseUrl}/assets/vendors/bootstrap-5.1.3-dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="{$baseUrl}/assets/porto/vendor/font-awesome/css/font-awesome.css" />
+<!-- Head Libs -->
+<script src="{$baseUrl}/assets/porto/vendor/jquery/jquery.min.js"></script>
+
+<title>Quality Control Tools</title>
+
+<style type="text/css">
+
+    html, body {
+        font-size: 12px;
+        font-family: "Arimo", Times, serif;
+    }
+    h1, .mylogo {
+        /* text-shadow: 2px 2px hsl(0, 0%, 83%); */
+        text-shadow: 1px 1px 2px black, 0 0 25px rgb(94, 255, 0), 0 0 5px rgb(56, 56, 163);
+        color: rgb(248, 248, 248);
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .mynav a {
+        color: white;
+    }
+
+    .datadetail {
+        cursor: pointer;
+    }
+
+    body {
+        /* background-image: url("{$baseUrl}/assets/images/bgImage.jpg"); */
+
+        /* background-image:
+                linear-gradient(to bottom, rgba(102, 166, 124, 0.71), rgba(0,0,255,0.5)),
+                url('{$baseUrl}/assets/images/bgImage.jpg'); */
+
+        background-image: url("{$baseUrl}/assets/images/noisy.png");
+        background-repeat: initial;
+    }
+    
+
+    
+</style>
+
+</head>
+    <body>
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#"><img src="{$baseUrl}/assets/images/qclogo3.png" alt="QC Logo" style="width:40px;" class="mylogo"></a>
+
+                <div class="collapse navbar-collapse" id="mynavbar">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <h1 class="font-monospace"> Compare Isian Folder </h1>
+                        </li>
+                        
+                    </ul>
+                    <!-- <span class="d-flex me-4 mynav">
+                        <a href="{$baseUrl}/auth/logout">
+                            <i class="fa fa-power-off"></i> Logout
+                        </a>
+                    </span>   -->
+                </div>
+            </div>
+        </nav>
+
+        <!-- <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #5a8880;">
+            <div class="container-fluid">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link " href="{$baseUrl}/atmqc" target="indexatm"> <i class="fa fa-database"> </i> Inquiry Payment Point </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="{$baseUrl}/abcd" target="indexatm"> <i class="fa fa-database"> </i> Search Data NFS</a>
+                    </li>                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="{$baseUrl}/abcd/howto" target="indexatm"><i class="fa fa-gear"></i> Cara Config Koneksi</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"> <i class="fa fa-download"> </i> Download Template</a>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="{$baseUrl}/assets/paymentpointtemplate.xlsx">API WEBService</a></li>
+                          <li><a class="dropdown-item" href="#">BTPN</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                
+            </div>
+        </nav> -->
+
+        {block name=bodycontent}{/block}
+        
+        <!-- JAVASCRIPT     -->
+        <script src="{$baseUrl}/assets/vendors/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js"></script>
+        <!-- CKEDITOR -->
+        <script src="{$baseUrl}/assets/vendors/ckeditor/ckeditor.js"></script>
+        <script src="{$baseUrl}/assets/singapp/node_modules/jquery/dist/jquery.min.js"></script>
+
+        <link href="{$baseUrl}/assets/vendors/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+        <script src="{$baseUrl}/assets/vendors/datatables/js/jquery.dataTables.min.js"></script>
+
+
+        {block name=scriptcontent}{/block}  
+        
+    </body>
+
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
