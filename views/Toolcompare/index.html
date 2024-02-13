@@ -5,41 +5,64 @@
         <div class="d-flex justify-content-center">
             <div class="p-2 w-50">
                 <div class="card">
-                    <div class="card-header text-center"> 
-                        <img src="{$baseUrl}/assets/images/qclogo2.png" class="rounded-circle" alt="" width="60" height="60">  
-                        <p>
-                            <h2> <strong>CM V1000</strong> </h2>
-                            OM\ {$get_current_user}
-                        </p>
-                    
-                        
+                    <div class="card-header shadow-lg"> 
+
+                        <div class="container">
+                            <div class="row p-3">
+                              <div class="col-md-auto">
+                                <img src="{$baseUrl}/assets/images/qclogo.png" class="rounded-circle shadow"  alt="" width="60" height="60"> 
+                              </div>
+                              <div class="col-md-auto">
+                                <div class="row border-bottom">
+                                    <h1 class="mb-2"> <label>Sync Checker - DTv1000</label></h1>
+                                </div>
+                                <div class="row mt-3">
+                                    <span class="font-monospace"> <i class="fa fa-key"></i> authorization to access folder using this profile</span> 
+                                    <span class="font-monospace"><i class="fa fa-user"></i> {$userprofile}</span> 
+                                </div>
+                                
+                               
+                              </div>
+                            </div>
+                        </div>
                     </div>
                     
 
                     <form method="POST" enctype="multipart/form-data" action="{$baseUrl}/toolcompare/comparefolder">
-                        <div class="card-body"> 
+                        <div class="card-body mt-5 p-4 "> 
                             
-                            
-                            <div class="form-floating mb-3">
+                            <!-- <div class="form-floating mb-4 rounded">
                                 <div class="form-check form-switch">
                                     <input class="form-check-input" type="checkbox" id="flagAction" name="flagAction">
                                     <label class="form-check-label" for="flagAction">VIEW MODE</label>
                                 </div>
+                            </div> -->
+
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="filetype" id="inlineRadio1" value="" checked>
+                                <label class="form-check-label" for="inlineRadio1"> VIEW MODE </label>
                             </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="filetype" id="inlineRadio2" value="pdf">
+                                <label class="form-check-label" for="inlineRadio2"> DOWNLOAD PDF</label>
+                            </div>
+                            
+                            
                        
-                            <div class="form-floating mb-3">
+                            <div class="form-floating mb-4 mt-4">
                                 <input type="text" class="form-control" id="folderSatu" placeholder="Enter Value" name="folderSatu" required>
-                                <label for="folderSatu">Path Folder#1 </label>
+                                <label for="folderSatu" class="font-monospace">Path Folder #1 </label>
                             </div>
     
-                            <div class="form-floating mb-3">
+                            <div class="form-floating mb-5">
                                 <input type="text" class="form-control" id="folderDua" placeholder="Enter Value" name="folderDua" required>
-                                <label for="folderDua">Path Folder#2 </label>
+                                <label for="folderDua" class="font-monospace">Path Folder #2 </label>
                             </div>
 
                         </div>
-                        <div class="card-footer">
-                            <div class="d-flex flex-row-reverse ms-1">
+                        <div class="card-footer p-3 ">
+                            <div class="d-flex flex-row-reverse">
                                 <button type="submit" class="btn btn-primary font-monospace">Compare</button>
                                 <!-- <button type="reset" class="btn btn-primary">Reset</button> -->
                             </div>

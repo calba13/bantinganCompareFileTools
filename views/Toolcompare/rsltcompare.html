@@ -11,16 +11,20 @@
         /* background-repeat: repeat-x; */
     }
 
-    H5 {
-        font-family: "Felix Titling", Times, serif;
-    }
-    
-    option {
-        font-size: 12px;
+    table {
+        border-collapse: collapse;
+        font-size: x-small;
     }
 
-    table {
-        font-size: x-small;
+    table, th, td {
+              border: 0.8px solid rgb(179, 255, 0);
+              font-size: 8px;
+              padding: 0.5em;
+    }
+
+    th {
+        background-color: rgb(92, 95, 95);
+        color: beige;
     }
 
 </style>
@@ -29,76 +33,84 @@
 <div class="container-float p-5">
 
     <div class="d-flex ">
-        <a href="{$baseUrl}/toolcompare" class="btn btn-navbar"> Start Over</a>
+        <a class="btn btn-primary" href="{$baseUrl}/toolcompare">
+            Start Over
+          </a>
     </div>
 
-    <div class="d-flex justify-content-center">
-           <!-- RESULT DATA INQUIRY -->
-        <div class="p-2">
-
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <!-- <th colspan=2>_</th> -->
-                            <!-- <th></th> -->
-                            <th scope="col" colspan=4> 
-                                <!-- <h6><i class="fa fa-info-circle"></i> folder#1   <kbd>{$totalDataF1.totalfolder} <i class="fa fa-folder-o"></i>  | {$totalDataF1.totalfile} <i class="fa fa-file-text-o"></i> </kbd> </h6>  
-                                <kbd>Path ::  {$pathSatu} </kbd>      -->
-                                <table class="table table-striped">
-                                    <tr><td style="text-align: right;"><kbd>Path #1</kbd></td><td>&nbsp;</td><td style="text-align: left;" class="p-1">{$pathSatu}</td></tr>
-                                    <tr><td style="text-align: right;"><kbd>folder  <i class="fa fa-folder-o"></i></kbd></td>&nbsp;<td></td><td style="text-align: left;">{$totalDataF1.totalfolder}</td></tr>
-                                    <tr><td style="text-align: right;"><kbd>files <i class="fa fa-file-text-o"></i></kbd></td><td>&nbsp;</td><td style="text-align: left;  margin-left:10px;">{$totalDataF1.totalfile}</td></tr>
-                                </table>                                
-                            </th>
-                            <th scope="col" colspan=4> 
-                                <!-- <h6><i class="fa fa-info-circle"></i> folder#2  <kbd> {$totalDataF2.totalfolder} <i class="fa fa-folder-o"></i>  | {$totalDataF2.totalfile} <i class="fa fa-file-text-o"></i> </kbd> </h6>  
-                                <kbd>Path :: {$pathDua} </kbd> -->
-                                <table class="table table-striped">
-                                    <tr><td style="text-align: right;"><kbd>Path #2</kbd></td><td>&nbsp;</td><td style="text-align: left;" class="p-1">{$pathDua}</td></tr>
-                                    <tr><td style="text-align: right;"><kbd>folder <i class="fa fa-folder-o"></i> </kbd></td><td>&nbsp;</td><td style="text-align: left;">{$totalDataF2.totalfolder}</td></tr>
-                                    <tr><td style="text-align: right;"><kbd>files <i class="fa fa-file-text-o"></i></kbd></td><td>&nbsp;</td><td style="text-align: left;">{$totalDataF2.totalfile}</td></tr>
-                                </table> 
-                            </th>
-                            </tr>
-                    </thead>
-
-                    
-                    <tbody>
-                        <tr>
-                            <!-- <th style="text-align: right;">No</th> -->
-                            <!-- <th style="text-align: center;">flag</th> -->
-                            <th>Filename #1</th>
-                            <th>Type #1</th>
-                            <th>Soze #1</th>
-                            <th>Date Modify #1</th>
-                            <th>Filename #2</th>
-                            <th>Type #2</th>
-                            <th>Soze #2</th>
-                            <th>Date Modify #2</th>
-                        </tr>
-          
-                        {foreach from=$rltData item=data name=foo}
+    <div class="row p-2 mt-4">
+        <!-- RESULT DATA INQUIRY -->
+        <table class="table table-striped table-striped" width="100%">
+            
+                <tr>
+                    <td scope="col" colspan=4> 
                             
-                            
-                            <tr class=" {$data.trStyle}">
-                                <!-- <th scope="row"></th>  -->
-                                <!-- <td style="text-align: right;"><strong>{$kolom}</strong></td> -->
-                                <!-- <td style="text-align: right;">
-                                {$smarty.foreach.foo.iteration}
-                                </td>  -->
-                                   
-                                {foreach from=$data.item item=subdata}
-                                    <td>{$subdata}</td>
-                                {/foreach}
-                                
-                            </tr>
-                        {/foreach}
-    
+                        <table class="table table-bordered border-light">
+                            <tr><td style="text-align: right;">Path Folder #1</td>
+                                <td style="text-align: center; width: 0.1em;">:</td>
+                                <td style="text-align: left;" class="p-1">{$pathSatu}</td></tr>
+                            <tr><td style="text-align: right;">folder <i class="fa fa-folder-o"></i></td>
+                                <td style="text-align: center; width: 0.1em;">:</td>
+                                <td style="text-align: left;"><kbd>{$totalDataF1.totalfolder}</kbd></td></tr>
+                            <tr><td style="text-align: right;">files <i class="fa fa-file-text-o"></i></kbd></td>
+                                <td style="text-align: center; width: 0.1em;">:</td>
+                                <td style="text-align: left;"><kbd>{$totalDataF1.totalfile}</kbd></td></tr>
+                        </table> 
+
+                    </td>
+                    <td scope="col" colspan=4> 
                         
-                    </tbody>
-                </table>
+                        <table class="table table-bordered border-light">
+                            <tr><td style="text-align: right;">Path Folder #2</td>
+                                <td style="text-align: center; width: 0.1em;">:</td>
+                                <td style="text-align: left;" class="p-1">{$pathDua}</td></tr>
+                            <tr><td style="text-align: right;">folder <i class="fa fa-folder-o"></i></td>
+                                <td style="text-align: center; width: 0.1em;">:</td>
+                                <td style="text-align: left;"><kbd>{$totalDataF2.totalfolder}</kbd></td></tr>
+                            <tr><td style="text-align: right;">files <i class="fa fa-file-text-o"></i></kbd></td>
+                                <td style="text-align: center; width: 0.1em;">:</td>
+                                <td style="text-align: left;"><kbd>{$totalDataF2.totalfile}</kbd></td></tr>
+                        </table> 
+                    </td>
+                </tr>
+        </table>
 
-        </div>
+        <table class="table table-striped table-striped" width="100%">
+                
+            <thead class="table-dark">
+                <tr>
+                    <!-- <th style="text-align: right;">No</th> -->
+                    <!-- <th style="text-align: center;">flag</th> -->
+                    <th style="width:140px">Filename #1</th>
+                    <th style="width:10px">Type#1</th>
+                    <th style="width:30px">Size#1</th>
+                    <th style="width:150px">Date Modify#1</th>
+                    <th style="width:140px">Filename #2</th>
+                    <th style="width:10px">Type#2</th>
+                    <th style="width:30px">Size#2</th>
+                    <th style="width:150px">Date Modify#2</th>
+                </tr>
+            </thead>
+                {foreach from=$rltData item=data name=foo}
+                    
+                    
+                    <tr class=" {$data.trStyle}">
+                        <!-- <th scope="row"></th>  -->
+                        <!-- <td style="text-align: right;"><strong>{$kolom}</strong></td> -->
+                        <!-- <td style="text-align: right;">
+                        {$smarty.foreach.foo.iteration}
+                        </td>  -->
+                            
+                        {foreach from=$data.item item=subdata}
+                            <td>{$subdata}</td>
+                        {/foreach}
+                        
+                    </tr>
+                {/foreach}
+
+        </table>
+
+ 
     </div>
 </div>
 {/block}

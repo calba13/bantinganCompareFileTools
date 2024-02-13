@@ -17,27 +17,25 @@ class ToolcompareController extends Controller
 	public function index()
 	{	
 		
-		$this->viewBag->get_current_user = get_current_user();
+		$this->viewBag->userprofile = get_current_user();
+		$this->viewBag->resultMessage = $this->flash("msgdownloadfiles");
         return $this->view();
 	}		
 
 	public function comparefolder(){
-	
-        // printMe::shm("POST", $_POST);
 
-		// $dataPath1 = $this->convertPath($_POST["folderSatu"]);
-		// $dataPath2 = $this->convertPath($_POST["folderDua"]); 
-
+		// SET path on Session data
+		$_SESSION["Originpath1"] = $_POST["folderSatu"];
 		$_SESSION["path1"] = $this->convertPath($_POST["folderSatu"]);
+		$_SESSION["Originpath2"] = $_POST["folderDua"];
 		$_SESSION["path2"] = $this->convertPath($_POST["folderDua"]); 
 
-		if(isset($_POST["flagAction"])) {
-			// printMe::shm("flagAction", "KE ISI");
-			$this->RedirectToAction('rsltcomparexlsx','toolcompare');	
+		// Currently Only PDF 
+		if(!empty($_POST["filetype"])) {
+			$this->RedirectToAction('pagetemplate','toolcompare', $_POST["filetype"]);	
 		}else{
 			$this->RedirectToAction('rsltcompare','toolcompare');	
 		}
-
     }
 
 	public function convertPath($path){
@@ -52,8 +50,8 @@ class ToolcompareController extends Controller
 
 		$data = $this->compareprc($dataPath1, $dataPath2);
 
-		$this->viewBag->pathSatu = $dataPath1;
-        $this->viewBag->pathDua = $dataPath2;
+		$this->viewBag->pathSatu = $_SESSION["Originpath1"];
+        $this->viewBag->pathDua = $_SESSION["Originpath2"];
 
         $this->viewBag->rltData = $data["data"];
 
@@ -64,15 +62,18 @@ class ToolcompareController extends Controller
 
 	}
 
-	public function rsltcomparexlsx(){
-		
+
+	public function pagetemplate($filetype){
+
+		// get path on Session data
 		$dataPath1 = $_SESSION["path1"];
 		$dataPath2 = $_SESSION["path2"];
 
+		// Call Function Read Directory
 		$data = $this->compareprc($dataPath1, $dataPath2, true);
 
-		$this->viewBag->pathSatu = $dataPath1;
-        $this->viewBag->pathDua = $dataPath2;
+		$this->viewBag->pathSatu = $_SESSION["Originpath1"];
+        $this->viewBag->pathDua = $_SESSION["Originpath2"];
 
         $this->viewBag->rltData = $data["data"];
 
@@ -80,72 +81,78 @@ class ToolcompareController extends Controller
         $this->viewBag->totalDataF2 = $data["p2total"];
         $html = $this->page();
 
-        // instantiate and use the dompdf class
-        $dompdf = new \Dompdf\Dompdf();
+		if($filetype == "pdf"){
 
-        $dompdf->loadHtml($html);
-
-        // (Optional) Setup the paper size and orientation
-        $dompdf->setPaper('A4', 'landscape');
-
-        // Render the HTML as PDF
-        $dompdf->render();
-
-        $output = $dompdf->output();
-
-        // file_put_contents($destinationPath."QCPASSFORM".$id.".pdf", $output);
-        $filename = "Result_Compare_Folder.pdf";
-
-		$guid = GUID::get();
-        $path = APPLICATION_SETTINGS["UploadDir"]."/".$guid;   
-        
-        // PROSES DOWNLOAD
-        if (!file_exists($path)) {
-            mkdir($path, 0777, true);
-            // echo "FOLDER Temp in Server PATH is Created... ^_^ <br>";
-        }
-
-		$pathFile = $path."/".$filename;
-        // PROSES DOWNLOAD (Created FIle)
-        file_put_contents($pathFile, $output);
-
-		
-		$this->download($guid, $pathFile);
-
-        $this->RedirectToAction('','toolcompare');
-
-	}
-
-
-	public function download($guid, $file_path) {
-
-		if (file_exists($file_path)) {
-            $filename = basename($file_path);
-			header($_SERVER["SERVER_PROTOCOL"] . " 200 OK");
-			header("Cache-Control: public"); // needed for internet explorer
-			header("Content-Type: application/pdf");
-			header("Content-Transfer-Encoding: Binary");
-			header("Content-Length:".filesize($file_path));
-			header("Content-Disposition: attachment; filename=".$filename);
-			readfile($file_path);
-
-			unlink($file_path);
-			if (is_dir(APPLICATION_SETTINGS["UploadDir"]."/".$guid)) {
-				// Hapus folder jika ada
-				if (!rmdir(APPLICATION_SETTINGS["UploadDir"]."/".$guid)) {
-					// echo "Gagal menghapus folder.";
-					printMe::shm("FOLDER", "Gagal menghapus folder.");
-				} else {
-					printMe::shm("FOLDER", "Folder berhasil dihapus.");
-				}
-			} else {
-				printMe::shm("FOLDER", "Folder tidak ditemukan.");
+			// instantiate and use the dompdf class
+			$dompdf = new \Dompdf\Dompdf();
+			$dompdf->loadHtml($html);
+	
+			// (Optional) Setup the paper size and orientation
+			$dompdf->setPaper('A4', 'landscape');
+	
+			// Render the HTML as PDF
+			$dompdf->render();
+	
+			$output = $dompdf->output();
+	
+			// file_put_contents($destinationPath."QCPASSFORM".$id.".pdf", $output);
+			$filename = "Result_Compare_Folder.pdf";
+	
+			$guid = GUID::get();
+			$path = APPLICATION_SETTINGS["UploadDir"]."/".$guid;   
+			
+			// PROSES DOWNLOAD
+			if (!file_exists($path)) {
+				mkdir($path, 0777, true);
+				// echo "FOLDER Temp in Server PATH is Created... ^_^ <br>";
 			}
-            //die(); 
+	
+			$file_path = $path."/".$filename;
+
+			// PROSES DOWNLOAD (Created FIle)
+			file_put_contents($file_path, $output);
+
+
+			// PROSES DOWNLOAD & Clear File After done
+			if (file_exists($file_path)) {
+				$filename = basename($file_path);
+				header($_SERVER["SERVER_PROTOCOL"] . " 200 OK");
+				header("Cache-Control: public"); // needed for internet explorer
+				header("Content-Type: application/pdf");
+				header("Content-Transfer-Encoding: Binary");
+				header("Content-Length:".filesize($file_path));
+				header("Content-Disposition: attachment; filename=".$filename);
+				readfile($file_path);
+	
+				unlink($file_path);
+
+				if(is_dir($path)){
+
+					if (!rmdir(APPLICATION_SETTINGS["UploadDir"]."/".$guid)) {
+						$this->flash("msgdownloadfiles", ["message"=>"Gagal menghapus folder.","class"=>"text-danger"]);
+						
+						//printMe::shm("FOLDER", "Gagal menghapus folder.");
+					} else {
+						$this->flash("msgdownloadfiles", ["message"=>"Folder berhasil dihapus.","class"=>"text-success"]);
+						// printMe::shm("FOLDER", "Folder berhasil dihapus.");
+					}
+				} else {
+					$this->flash("msgdownloadfiles", ["message"=>"Folder tidak ditemukan.","class"=>"text-warning"]);
+					// printMe::shm("FOLDER", "Folder tidak ditemukan.");
+				}
+			}	
+			
+		} else {
+			$this->flash("msgdownloadfiles", ["message"=>"UnKnown File Type", "class"=>"text-danger"]);
 		}
 	}
 
-
+	/*------------------------------------------------------------------------------*/
+	/*	
+	*	GROUP 
+	*	My FUNCTION 	
+	*
+	*/
 
 	public function compareprc($path1, $path2, $is_download=null){
 
@@ -153,9 +160,6 @@ class ToolcompareController extends Controller
 		
 		$dataPath1 = $this->scan_dir($path1, $is_download);
 		$dataPath2 = $this->scan_dir($path2, $is_download);
-
-		// printMe::shm("PATH #1", $dataPath1);
-		// printMe::shm("PATH #2", $dataPath2);
 
 			# Filter Data by FILEName yang kondisinya KEY sama
 			$tmpfinaldata = array();
@@ -265,13 +269,6 @@ class ToolcompareController extends Controller
 				$size = number_format(ceil((filesize($dir."/".$tmpfiles[$i])/1024)))." Kb";
 				$totalFile++;
 			}
-
-
-			// printMe::shm("filename #1", $tmpfiles[$i]);
-			// printMe::shm("size FORMAt #1", number_format(ceil((filesize($dir."/".$tmpfiles[$i])/1024)))." Kb" );
-			// printMe::shm("size #1", ceil((filesize($dir."/".$tmpfiles[$i])/1024)));
-			
-
 
 			$data[$tmpfiles[$i]] = [
 				"type" => filetype($dir."/".$tmpfiles[$i]),

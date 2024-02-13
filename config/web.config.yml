@@ -5,7 +5,7 @@ application_settings :
   Models : models # Location of models file
   Views : views # Location of views file  
   BaseUrl :  # Application base path  
-  DefaultController: Home # default controller
+  DefaultController: Toolcompare # default controller
   RedBeanPHP_Freeze : false  # RedbeanPHP freeze settings, set true to disable auto create table/columns
   TempFolder : tmp/ # For storing temporary files, from upload or generate file for download, etc
   SharedViewFolder : Shared/
